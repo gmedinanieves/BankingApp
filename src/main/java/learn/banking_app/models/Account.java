@@ -12,9 +12,10 @@ import java.math.BigDecimal;
 @Entity
 @Table(
         name = "account",
-        uniqueConstraints = @UniqueConstraint(
-                columnNames = {"account_holder_name", "email"}
-        )
+        uniqueConstraints = {
+                @UniqueConstraint(columnNames = "email"),
+                @UniqueConstraint(columnNames = "account_holder_name")
+        }
 )
 public class Account {
 

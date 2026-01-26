@@ -25,14 +25,15 @@ public class AccountService {
             return result;
         }
 
-        boolean duplicate = accountRepository
-                .existsByAccountHolderNameIgnoreCaseAndEmailIgnoreCase(
-                        account.getAccountHolderName(),
-                        account.getEmail()
-                );
+        if (accountRepository.existsByAccountHolderNameIgnoreCase(account.getAccountHolderName())) {
+            result.addMessage("Account holder name already exists", ResultType.INVALID);
+        }
 
-        if (duplicate) {
-            result.addMessage("An account with this name and email already exists", ResultType.INVALID);
+        if (accountRepository.existsByEmailIgnoreCase(account.getEmail())) {
+            result.addMessage("Email already exists", ResultType.INVALID);
+        }
+
+        if (!result.isSuccess()) {
             return result;
         }
 

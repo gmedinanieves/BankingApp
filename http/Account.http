@@ -1,0 +1,31 @@
+@url = http://localhost:8080/api/accounts
+
+### Create account
+POST {{url}}
+Content-Type: application/json
+
+{
+  "accountHolderName": "Jane Doe",
+  "email": "jane_doe123@gmail.com",
+  "balance": 1000
+}
+
+### Get account
+GET {{url}}/1
+
+### Deposit
+POST {{url}}/1/deposit
+Content-Type: application/json
+
+{
+  "amount": 200
+}
+
+### Withdraw
+POST {{url}}/1/withdraw
+Content-Type: application/json
+
+{
+  "amount": 150
+}
+
